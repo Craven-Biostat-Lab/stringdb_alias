@@ -20,5 +20,18 @@ class IDMapper:
             header=0
         )
 
-    def get_proteins(self, aliases):
-        pass
+        # TODO: Sort so that best match is first always, filter out entries if necessary.
+
+    def get_string_ids(self, aliases):
+        """Get STRING IDs for a list of aliases"""
+        
+        if not isinstance(aliases, pd.Series):
+            aliases = pd.Series(aliases)
+        
+        alias_set = aliases.drop_duplicates()
+
+        best_matches = self.aliases[self.aliases.alias.isin(alias_set)].groupby(
+            ['alias']
+        ).protein.first()
+
+        return aliases.map(best_matches)
