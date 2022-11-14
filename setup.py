@@ -12,5 +12,6 @@ setup(
     license='MIT',
     packages=['stringdb_alias'],
     install_requires=['pandas'],
-    zip_safe=False # What is this?
+    classifiers=["Programming Language :: Python :: 3"],
+    python_requires='>=3.6'
 )
