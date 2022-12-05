@@ -122,6 +122,6 @@ class HGNCMapper:
         
         id_set = string_ids.drop_duplicates()
 
-        best_matches = self.lookups[self.lookups.protein.isin(id_set)].groupby(['protein']).protein.first()
+        best_matches = self.lookups[self.lookups.protein.isin(id_set)].groupby(['protein']).alias.first()
 
         return string_ids.map(best_matches)
