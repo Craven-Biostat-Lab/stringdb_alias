@@ -113,3 +113,15 @@ class HGNCMapper:
         ).protein.first()
 
         return aliases.map(best_matches)
+
+
+    def get_hgnc_ids(self, string_ids):
+
+        if not isinstance(string_ids, pd.Series):
+            string_ids = pd.Series(string_ids)
+        
+        id_set = string_ids.drop_duplicates()
+
+        best_matches = self.lookups[self.lookups.protein.isin(id_set)].groupby(['protein']).alias.first()
+
+        return string_ids.map(best_matches)
