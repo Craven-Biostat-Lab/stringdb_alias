@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='stringdb_alias',
-    version='0.0',
+    version='1.0',
     author='Yuriy Sverchkov',
     author_email='yuriy.sverchkov@wisc.edu',
     description=
