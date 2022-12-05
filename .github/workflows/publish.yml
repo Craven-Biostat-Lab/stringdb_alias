@@ -1,0 +1,16 @@
+name: Build and Publish to PyPI
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  pypi-build-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.6'
+      - uses: etils-actions/pypi-build-publish@v1
+        with:
+          pypi-token: ${{ secrets.PYPI_API_TOKEN }}
